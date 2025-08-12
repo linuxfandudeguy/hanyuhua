@@ -72,35 +72,30 @@
           "character": "一",
           "pinyin": "yī",
           "english": "one",
-          "audio": "/audio/yi.mp3",
           "example": "我有一个苹果。"
         },
         {
           "character": "二",
           "pinyin": "èr",
           "english": "two",
-          "audio": "/audio/er.mp3",
           "example": "二加二等于四。"
         },
         {
           "character": "三",
           "pinyin": "sān",
           "english": "three",
-          "audio": "/audio/san.mp3",
           "example": "我们三个人一起去。"
         },
         {
           "character": "四",
           "pinyin": "sì",
           "english": "four",
-          "audio": "/audio/si.mp3",
           "example": "四季如春。"
         },
         {
           "character": "五",
           "pinyin": "wǔ",
           "english": "five",
-          "audio": "/audio/wu.mp3",
           "example": "五点钟见面。"
         }
       ],
@@ -125,7 +120,6 @@
     "title": "Family Members",
     "titleChinese": "家庭成员",
     "level": "beginner",
-    "rating": 4.9,
     "completed": false,
     "locked": false,
     "description": "Learn to talk about your family",
@@ -137,19 +131,16 @@
           "character": "爸爸",
           "pinyin": "bà ba",
           "english": "father, dad",
-          "audio": "/audio/baba.mp3",
           "example": "我爸爸是医生。"
         },
         {
           "character": "妈妈",
-          "pinyin": "mā ma",
           "english": "mother, mom",
           "audio": "/audio/mama.mp3",
           "example": "妈妈做饭很好吃。"
         },
         {
           "character": "哥哥",
-          "pinyin": "gē ge",
           "english": "older brother",
           "audio": "/audio/gege.mp3",
           "example": "我哥哥比我高。"
@@ -158,7 +149,6 @@
           "character": "姐姐",
           "pinyin": "jiě jie",
           "english": "older sister",
-          "audio": "/audio/jiejie.mp3",
           "example": "姐姐在大学学习。"
         }
       ],
@@ -194,28 +184,24 @@
           "character": "吃饭",
           "pinyin": "chī fàn",
           "english": "to eat (a meal)",
-          "audio": "/audio/chifan.mp3",
           "example": "我们一起吃饭吧。"
         },
         {
           "character": "睡觉",
           "pinyin": "shuì jiào",
           "english": "to sleep",
-          "audio": "/audio/shuijiao.mp3",
           "example": "我每天十点睡觉。"
         },
         {
           "character": "工作",
           "pinyin": "gōng zuò",
           "english": "to work",
-          "audio": "/audio/gongzuo.mp3",
           "example": "他在银行工作。"
         },
         {
           "character": "学习",
           "pinyin": "xué xí",
           "english": "to study",
-          "audio": "/audio/xuexi.mp3",
           "example": "我正在学习中文。"
         }
       ],
