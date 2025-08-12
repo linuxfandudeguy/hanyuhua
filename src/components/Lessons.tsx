@@ -58,7 +58,6 @@ export function Lessons() {
 
   const handleLessonComplete = (lessonId: number) => {
     setCompletedLessons(prev => new Set([...prev, lessonId]));
-    // Update the lesson as completed in the lessons array
     setLessons(prev => prev.map(lesson => 
       lesson.id === lessonId ? { ...lesson, completed: true } : lesson
     ));
@@ -165,6 +164,15 @@ export function Lessons() {
                   <Clock className="w-4 h-4 mr-1" />
                   {lesson.duration}
                 </div>
+                <div className="flex items-center">
+                  <Users className="w-4 h-4 mr-1" />
+                  {lesson.students.toLocaleString()}
+                </div>
+                <div className="flex items-center">
+                  <Star className="w-4 h-4 mr-1 fill-current text-yellow-400" />
+                  {lesson.rating}
+                </div>
+              </div>
 
               <button
                 disabled={lesson.locked}
@@ -186,6 +194,7 @@ export function Lessons() {
               </button>
             </div>
           </div>
+        ))}
       </div>
     </div>
   );
