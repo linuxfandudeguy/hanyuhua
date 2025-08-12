@@ -4,9 +4,6 @@
     "title": "Basic Greetings",
     "titleChinese": "基本问候",
     "level": "beginner",
-    "duration": "15 min",
-    "students": 12543,
-    "rating": 4.9,
     "completed": false,
     "locked": false,
     "description": "Learn essential greetings and polite expressions",
@@ -18,28 +15,30 @@
           "character": "你好",
           "pinyin": "nǐ hǎo",
           "english": "hello",
-          "audio": "/audio/nihao.mp3",
           "example": "你好，很高兴见到你！"
         },
         {
           "character": "再见",
           "pinyin": "zài jiàn",
           "english": "goodbye",
-          "audio": "/audio/zaijian.mp3",
           "example": "再见，明天见！"
         },
         {
           "character": "谢谢",
           "pinyin": "xiè xiè",
           "english": "thank you",
-          "audio": "/audio/xiexie.mp3",
           "example": "谢谢你的帮助！"
+        },
+        {
+          "character": "最近好吗",
+          "pinyin": "zuìjìn hǎo ma",
+          "english": "how have you been",
+          "example": "小明，最近好吗？"
         },
         {
           "character": "对不起",
           "pinyin": "duì bù qǐ",
           "english": "sorry",
-          "audio": "/audio/duibuqi.mp3",
           "example": "对不起，我迟到了。"
         }
       ],
@@ -63,11 +62,6 @@
     "id": 2,
     "title": "Numbers 1-10",
     "titleChinese": "数字一到十",
-    "level": "beginner",
-    "duration": "20 min",
-    "students": 11234,
-    "rating": 4.8,
-    "completed": false,
     "locked": false,
     "description": "Master counting from 1 to 10 in Mandarin",
     "topics": ["一", "二", "三", "四", "五"],
@@ -131,8 +125,6 @@
     "title": "Family Members",
     "titleChinese": "家庭成员",
     "level": "beginner",
-    "duration": "25 min",
-    "students": 9876,
     "rating": 4.9,
     "completed": false,
     "locked": false,
@@ -191,11 +183,8 @@
     "title": "Daily Activities",
     "titleChinese": "日常活动",
     "level": "intermediate",
-    "duration": "30 min",
-    "students": 7654,
-    "rating": 4.7,
     "completed": false,
-    "locked": true,
+    "locked": false,
     "description": "Express daily routines and activities",
     "topics": ["吃饭", "睡觉", "工作", "学习"],
     "content": {
