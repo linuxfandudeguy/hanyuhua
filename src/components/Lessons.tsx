@@ -186,7 +186,6 @@ export function Lessons() {
               </button>
             </div>
           </div>
-        ))}
       </div>
     </div>
   );
