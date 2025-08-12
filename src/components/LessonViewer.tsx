@@ -180,7 +180,6 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
       </p>
       <div className="bg-gray-50 rounded-lg p-4 mb-6">
         <div className="flex justify-center space-x-8 text-sm text-gray-600">
-          <span>Duration: {lesson.duration}</span>
           <span>Level: {lesson.level}</span>
           <span>Vocabulary: {lesson.content.vocabulary.length} words</span>
         </div>
