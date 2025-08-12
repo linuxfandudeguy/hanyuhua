@@ -7,7 +7,6 @@ interface LessonContent {
     character: string;
     pinyin: string;
     english: string;
-    audio: string;
     example: string;
   }>;
   exercises: Array<{
