@@ -118,6 +118,26 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
   const playAudio = (audioPath: string) => {
     // Audio playback would be implemented here
     console.log('Playing audio:', audioPath);
+    const audio = new Audio(audioPath);
+    audio.play();
+  };
+
+  const playPinyin = (text: string) => {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voices = window.speechSynthesis.getVoices();
+      // Pick a Chinese voice if available
+      const chineseVoice = voices.find(v =>
+        v.lang.startsWith('zh') || v.lang.startsWith('cmn') || v.lang.startsWith('yue')
+      );
+      if (chineseVoice) {
+        utterance.voice = chineseVoice;
+      }
+      utterance.rate = 0.8; // slower for clarity
+      window.speechSynthesis.speak(utterance);
+    } else {
+      alert('Speech synthesis not supported in this browser.');
+    }
   };
 
   if (loading) {
@@ -182,13 +202,23 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
           <div className="text-2xl text-gray-700 mb-2">{vocab.pinyin}</div>
           <div className="text-xl text-gray-600 font-medium mb-4">{vocab.english}</div>
           
-          <button
-            onClick={() => playAudio(vocab.audio)}
-            className="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors mb-6"
-          >
-            <Volume2 className="w-4 h-4 mr-2" />
-            Listen
-          </button>
+          <div className="mb-6 flex justify-center space-x-4">
+            <button
+              onClick={() => playAudio(vocab.audio)}
+              className="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+            >
+              <Volume2 className="w-4 h-4 mr-2" />
+              Listen Audio
+            </button>
+
+            <button
+              onClick={() => playPinyin(vocab.pinyin)}
+              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Play className="w-4 h-4 mr-2" />
+              Play Pinyin
+            </button>
+          </div>
           
           <div className="bg-white rounded-lg p-4">
             <p className="text-gray-800 mb-2">{vocab.example}</p>
