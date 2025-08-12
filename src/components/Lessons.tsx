@@ -141,9 +141,6 @@ export function Lessons() {
               <h3 className="font-bold text-xl text-gray-900 mb-2">
                 {lesson.title}
               </h3>
-              <h4 className="text-lg text-red-600 font-medium mb-3">
-                {lesson.titleChinese}
-              </h4>
               <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                 {lesson.description}
               </p>
