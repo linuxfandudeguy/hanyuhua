@@ -6,7 +6,9 @@ import { Vocabulary } from './components/Vocabulary';
 import { Practice } from './components/Practice';
 import { Progress } from './components/Progress';
 import { Footer } from './components/Footer';
-import { GDPRCCPAConsent } from './components/Consent'; 
+import { GDPRCCPAConsent } from './components/Consent';
+import { GiscusComments } from './components/Comments'; 
+
 
 
 export type Section = 'home' | 'lessons' | 'vocabulary' | 'practice' | 'progress';
@@ -38,6 +40,7 @@ function App() {
         {renderSection()}
         <GDPRCCPAConsent />
       </main>
+       <GiscusComments />
       <Footer />
     </div>
   );
