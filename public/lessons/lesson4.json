@@ -1,0 +1,22 @@
+{
+  "id": 4,
+  "title": "Daily Activities",
+  "titleChinese": "日常活动",
+  "level": "intermediate",
+  "completed": false,
+  "locked": false,
+  "description": "Express daily routines and activities",
+  "topics": ["吃饭", "睡觉", "工作", "学习"],
+  "content": {
+    "introduction": "Learn to describe your daily activities and routines in Chinese.",
+    "vocabulary": [
+      { "character": "吃饭", "pinyin": "chī fàn", "english": "to eat (a meal)", "example": "我们一起吃饭吧。" },
+      { "character": "睡觉", "pinyin": "shuì jiào", "english": "to sleep", "example": "我每天十点睡觉。" },
+      { "character": "工作", "pinyin": "gōng zuò", "english": "to work", "example": "他在银行工作。" },
+      { "character": "学习", "pinyin": "xué xí", "english": "to study", "example": "我正在学习中文。" }
+    ],
+    "exercises": [
+      { "type": "translation", "question": "What does 工作 mean?", "options": ["to eat", "to sleep", "to work", "to study"], "correct": 2 }
+    ]
+  }
+}
