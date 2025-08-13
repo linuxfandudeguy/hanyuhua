@@ -20,9 +20,7 @@ export function Hero({ onGetStarted }: HeroProps) {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-medium mb-6">
-              <Star className="w-4 h-4 mr-2" />
-              #1 Chinese Learning Platform
-            </div>
+            
             
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Master
@@ -45,28 +43,9 @@ export function Hero({ onGetStarted }: HeroProps) {
                 开始学习 Start Learning
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
-              
-              <button className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-700 font-semibold rounded-xl border-2 border-gray-200 hover:border-red-200 hover:text-red-600 transition-all duration-200">
-                <Play className="w-5 h-5 mr-2" />
-                Watch Demo
-              </button>
             </div>
 
-            <div className="flex items-center justify-center lg:justify-start space-x-8 text-sm text-gray-500">
-              <div className="flex items-center">
-                <Users className="w-4 h-4 mr-2" />
-                50K+ Students
-              </div>
-              <div className="flex items-center">
-                <BookOpen className="w-4 h-4 mr-2" />
-                500+ Lessons
-              </div>
-              <div className="flex items-center">
-                <Star className="w-4 h-4 mr-2 fill-current text-yellow-400" />
-                4.9 Rating
-              </div>
-            </div>
-          </div>
+            
 
           <div className="relative">
             <div className="relative bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-300">
