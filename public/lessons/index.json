@@ -1,0 +1,6 @@
+[
+  { "id": 1, "title": "Basic Greetings", "file": "lesson1.json" },
+  { "id": 2, "title": "Numbers 1-10", "file": "lesson2.json" },
+  { "id": 3, "title": "Family Members", "file": "lesson3.json" },
+  { "id": 4, "title": "Daily Activities", "file": "lesson4.json" }
+]
