@@ -137,13 +137,12 @@
         {
           "character": "妈妈",
           "english": "mother, mom",
-          "audio": "/audio/mama.mp3",
           "example": "妈妈做饭很好吃。"
         },
         {
           "character": "哥哥",
+          "pinyin": "gē ge"
           "english": "older brother",
-          "audio": "/audio/gege.mp3",
           "example": "我哥哥比我高。"
         },
         {
@@ -163,7 +162,7 @@
         {
           "type": "pinyin",
           "question": "What is the pinyin for 哥哥?",
-          "options": ["bà ba", "mā ma", "gē gē", "jiě jie"],
+          "options": ["bà ba", "mā ma", "gē ge", "jiě jie"],
           "correct": 2
         }
       ]
