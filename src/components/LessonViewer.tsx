@@ -188,33 +188,49 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
     </div>
   );
 
-  const renderVocabulary = () => {
-    const vocab = lesson.content.vocabulary[currentVocabIndex];
-    return (
-      <div className="text-center">
-        <div className="mb-6">
-          <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-            Vocabulary {currentVocabIndex + 1} of {lesson.content.vocabulary.length}
-          </span>
-        </div>
-        <div className="bg-gradient-to-br from-red-50 to-amber-50 rounded-2xl p-8 mb-6">
-          <div className="text-6xl font-bold text-red-600 mb-4">{vocab.character}</div>
-          <div className="text-2xl text-gray-700 mb-2">{vocab.pinyin}</div>
-          <div className="text-xl text-gray-600 font-medium mb-4">{vocab.english}</div>
-          <button
-            onClick={() => playCharacter(vocab.character)}
-            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Play className="w-4 h-4 mr-2" /> Play Pinyin
-          </button>
-          <div className="bg-white rounded-lg p-4 mt-4">
-            <p className="text-gray-800 mb-2">{vocab.example}</p>
-            <p className="text-gray-500 text-sm">Example sentence</p>
-          </div>
+ const renderVocabulary = () => {
+  const vocab = lesson.content.vocabulary[currentVocabIndex];
+  const speechSupported = 'speechSynthesis' in window;
+
+  return (
+    <div className="text-center">
+      <div className="mb-6">
+        <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+          Vocabulary {currentVocabIndex + 1} of {lesson.content.vocabulary.length}
+        </span>
+      </div>
+      <div className="bg-gradient-to-br from-red-50 to-amber-50 rounded-2xl p-8 mb-6">
+        <div className="text-6xl font-bold text-red-600 mb-4">{vocab.character}</div>
+        <div className="text-2xl text-gray-700 mb-2">{vocab.pinyin}</div>
+        <div className="text-xl text-gray-600 font-medium mb-4">{vocab.english}</div>
+
+        <button
+          onClick={() => speechSupported && playCharacter(vocab.character)}
+          disabled={!speechSupported}
+          className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${
+            speechSupported
+              ? 'bg-blue-600 text-white hover:bg-blue-700'
+              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+          }`}
+        >
+          <Play className="w-4 h-4 mr-2" /> Play Pinyin
+        </button>
+
+        {!speechSupported && (
+          <p className="mt-2 text-sm text-red-600">
+            The "Play Pinyin" button does not work because your browser doesn't support the SpeechSynthesis API. Please update your browser.
+          </p>
+        )}
+
+        <div className="bg-white rounded-lg p-4 mt-4">
+          <p className="text-gray-800 mb-2">{vocab.example}</p>
+          <p className="text-gray-500 text-sm">Example sentence</p>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
+
 
   const renderExercises = () => {
     const exercise = lesson.content.exercises[currentExerciseIndex];
