@@ -62,7 +62,7 @@ export function Footer() {
         {/* Footer bottom */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400 flex items-center justify-center">
-            Made with <Heart className="w-4 h-4 text-red-500 mx-1" /> (and reactfor Chinese learners worldwide</p>
+            Made with <Heart className="w-4 h-4 text-red-500 mx-1" /> (and Typescript Vite React.js) for Chinese learners worldwide</p>
           <p className="text-gray-500 text-sm mt-2">
             © {currentYear} 汉语花. All rights reserved.
           </p>
