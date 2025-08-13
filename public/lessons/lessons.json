@@ -136,12 +136,13 @@
         },
         {
           "character": "妈妈",
+          "pinyin": "mā ma",
           "english": "mother, mom",
           "example": "妈妈做饭很好吃。"
         },
         {
           "character": "哥哥",
-          "pinyin": "gē ge"
+          "pinyin": "gē ge",
           "english": "older brother",
           "example": "我哥哥比我高。"
         },
