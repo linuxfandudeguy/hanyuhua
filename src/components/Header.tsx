@@ -24,13 +24,13 @@ export function Header({ currentSection, onSectionChange }: HeaderProps) {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">中</span>
+              <span className="text-white font-bold text-lg">汉</span>
             </div>
             <div>
               <h1 className="text-xl font-bold bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text text-transparent">
-                学中文
+                汉语花              
               </h1>
-              <p className="text-xs text-gray-500">Learn Chinese</p>
+              <p className="text-xs text-gray-500">HanyuHua</p>
             </div>
           </div>
 
