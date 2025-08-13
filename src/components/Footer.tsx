@@ -9,32 +9,26 @@ export function Footer() {
           <div className="col-span-2">
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-8 h-8 bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">中</span>
+                <span className="text-white font-bold text-lg">汉</span>
               </div>
               <div>
                 <h3 className="text-xl font-bold bg-gradient-to-r from-red-400 to-amber-400 bg-clip-text text-transparent">
-                  学中文
+                  汉语花              
                 </h3>
-                <p className="text-xs text-gray-400">Learn Chinese</p>
+                <p className="text-xs text-gray-400">HanyuHua</p>
               </div>
             </div>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              Master Mandarin Chinese through interactive lessons, character practice, 
-              and cultural immersion. Your journey to fluency starts here.
-            </p>
+              With us, you might learn Chinese. Or you might just click around. Either way, enjoy!            
+             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-red-400 transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-red-400 transition-colors">
+              <a href="https://github.com/linuxfandudeguy/learn-chinese" className="text-gray-400 hover:text-red-400 transition-colors">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-red-400 transition-colors">
+              <a href="mailto:koshlandjg105@gmail.com" className="text-gray-400 hover:text-red-400 transition-colors">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
-          </div>
-
           <div>
             <h4 className="font-semibold mb-4">Learning</h4>
             <ul className="space-y-2 text-gray-400">
