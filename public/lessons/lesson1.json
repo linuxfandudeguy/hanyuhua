@@ -1,0 +1,26 @@
+{
+  "id": 1,
+  "title": "Basic Greetings",
+  "titleChinese": "基本问候",
+  "level": "beginner",
+  "completed": false,
+  "locked": false,
+  "description": "Learn essential greetings and polite expressions",
+  "topics": ["你好", "再见", "谢谢", "对不起"],
+  "content": {
+    "introduction": "Welcome to your first Chinese lesson! Today we'll learn the most important greetings and polite expressions that you'll use every day.",
+    "vocabulary": [
+      { "character": "你好", "pinyin": "nǐ hǎo", "english": "hello", "example": "你好，很高兴见到你！" },
+      { "character": "再见", "pinyin": "zài jiàn", "english": "goodbye", "example": "再见，明天见！" },
+      { "character": "谢谢", "pinyin": "xiè xiè", "english": "thank you", "example": "谢谢你的帮助！" },
+      { "character": "最近好吗", "pinyin": "zuìjìn hǎo ma", "english": "how have you been", "example": "小明，最近好吗？" },
+      { "character": "对不起", "pinyin": "duì bù qǐ", "english": "sorry", "example": "对不起，我迟到了。" }
+    ],
+    "exercises": [
+      { "type": "translation", "question": "How do you say 'hello' in Chinese?", "options": ["再见", "你好", "谢谢", "对不起"], "correct": 1 },
+      { "type": "pinyin", "question": "What is the pinyin for 谢谢?", "options": ["xiè xiè", "zài jiàn", "nǐ hǎo", "duì bù qǐ"], "correct": 0 },
+      { "type": "pinyin", "question": "What is the pinyin for 对不起?", "options": ["zài jiàn", "péng yǒu", "nǐ hǎo", "duì bù qǐ"], "correct": 3 },
+      { "type": "translation", "question": "How do you say 'sorry' in Chinese?", "options": ["再见", "你好", "谢谢", "对不起"], "correct": 3 }
+    ]
+  }
+}
