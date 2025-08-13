@@ -19,7 +19,7 @@ const practiceQuestions: Question[] = [
     options: ['再见', '你好', '谢谢', '对不起'],
     correct: 1,
     explanation: '你好 (nǐ hǎo) is the standard greeting in Chinese.',
-    character: '你好'
+    character: '?'
   },
   {
     id: 2,
@@ -38,7 +38,7 @@ const practiceQuestions: Question[] = [
     options: ['朋友', '老师', '学生', '家人'],
     correct: 0,
     explanation: '朋友 (péng yǒu) means friend. 老师 = teacher, 学生 = student, 家人 = family.',
-    character: '朋友'
+    character: '?'
   },
   {
     id: 4,
