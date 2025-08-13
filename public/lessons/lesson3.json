@@ -1,0 +1,23 @@
+{
+  "id": 3,
+  "title": "Family Members",
+  "titleChinese": "家庭成员",
+  "level": "beginner",
+  "completed": false,
+  "locked": false,
+  "description": "Learn to talk about your family",
+  "topics": ["爸爸", "妈妈", "兄弟", "姐妹"],
+  "content": {
+    "introduction": "Family is very important in Chinese culture. Let's learn how to talk about family members.",
+    "vocabulary": [
+      { "character": "爸爸", "pinyin": "bà ba", "english": "father, dad", "example": "我爸爸是医生。" },
+      { "character": "妈妈", "pinyin": "mā ma", "english": "mother, mom", "example": "妈妈做饭很好吃。" },
+      { "character": "哥哥", "pinyin": "gē ge", "english": "older brother", "example": "我哥哥比我高。" },
+      { "character": "姐姐", "pinyin": "jiě jie", "english": "older sister", "example": "姐姐在大学学习。" }
+    ],
+    "exercises": [
+      { "type": "translation", "question": "How do you say 'mother' in Chinese?", "options": ["爸爸", "妈妈", "哥哥", "姐姐"], "correct": 1 },
+      { "type": "pinyin", "question": "What is the pinyin for 哥哥?", "options": ["bà ba", "mā ma", "gē ge", "jiě jie"], "correct": 2 }
+    ]
+  }
+}
