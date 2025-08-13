@@ -1,28 +1,18 @@
-
 const EU_COUNTRIES = [
   'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE'
 ];
 
 export async function handler(event, context) {
-  let ip = '';
-  let countryCode = '';
+  // 1️⃣ Get the visitor IP from headers
+  const forwarded = event.headers['x-forwarded-for'];
+  const ip = forwarded ? forwarded.split(',')[0] : event.headers['x-nf-client-connection-ip'] || '';
 
-  // 1️⃣ Get IP and country from wtfismyip
-  try {
-    const wtfRes = await fetch('https://wtfismyip.com/json');
-    const wtfData = await wtfRes.json();
-    ip = wtfData.YourFuckingIPAddress || '';
-    countryCode = wtfData.YourFuckingCountryCode || '';
-  } catch (err) {
-    console.error('WTFIP fetch failed:', err);
-  }
-
-  // 2️⃣ Feed IP to ip-api.com for more info via uncors
+  // 2️⃣ Get location info from ip-api.com
   let geoData: any = {};
   if (ip) {
     try {
       const apiRes = await fetch(
-        `https://uncors.vercel.app/?url=http://ip-api.com/json/${ip}?fields=status,country,regionName,city,timezone,query`
+        `http://ip-api.com/json/${ip}?fields=status,countryCode,country,regionName,city,timezone,query`
       );
       geoData = await apiRes.json();
     } catch (err) {
@@ -30,20 +20,17 @@ export async function handler(event, context) {
     }
   }
 
-  const country = geoData.country || 'Unknown';
-  const region = geoData.regionName || 'Unknown';
-
   // 3️⃣ Normalize for GDPR/CCPA checks
-  const gdpr = EU_COUNTRIES.includes(countryCode.toUpperCase());
-  const ccpa = region.trim().toLowerCase() === 'california'; // normalized
+  const gdpr = EU_COUNTRIES.includes((geoData.countryCode || '').toUpperCase());
+  const ccpa = (geoData.regionName || '').trim().toLowerCase() === 'california';
 
   return {
     statusCode: 200,
     body: JSON.stringify({
       ip: geoData.query || ip || 'Unknown',
-      countryCode: countryCode || geoData.countryCode || 'Unknown',
-      country,
-      region,
+      countryCode: geoData.countryCode || 'Unknown',
+      country: geoData.country || 'Unknown',
+      region: geoData.regionName || 'Unknown',
       city: geoData.city || 'Unknown',
       timezone: geoData.timezone || 'Unknown',
       gdpr,
