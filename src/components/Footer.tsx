@@ -36,24 +36,11 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2 */}
-          <div>
-            <h4 className="font-semibold mb-4">Learning</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white transition-colors">Beginner Course</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Intermediate Course</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Advanced Course</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Character Practice</a></li>
-            </ul>
-          </div>
-
-          {/* Column 3 */}
+         
           <div>
             <h4 className="font-semibold mb-4">Support</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Community</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="https://github.com/linuxfandudeguy/learn-chinese/issues/new" className="hover:text-white transition-colors">Contact Us</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
             </ul>
           </div>
@@ -62,7 +49,7 @@ export function Footer() {
         {/* Footer bottom */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400 flex items-center justify-center">
-            Made with <Heart className="w-4 h-4 text-red-500 mx-1" /> (and Typescript Vite React.js) for Chinese learners worldwide</p>
+            Made with <Heart className="w-4 h-4 text-red-500 mx-1" /> (and Vite-bundled Typescript React.js) for Chinese learners worldwide</p>
           <p className="text-gray-500 text-sm mt-2">
             © {currentYear} 汉语花. All rights reserved.
           </p>
