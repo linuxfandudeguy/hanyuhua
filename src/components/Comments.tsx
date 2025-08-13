@@ -17,7 +17,7 @@ export function GiscusComments() {
     script.setAttribute('data-reactions-enabled', '1');
     script.setAttribute('data-emit-metadata', '1');
     script.setAttribute('data-input-position', 'bottom');
-    script.setAttribute('data-theme', 'preferred_color_scheme');
+    script.setAttribute('data-theme', 'catppuccin_latte');
     script.setAttribute('data-lang', 'en');
     script.setAttribute('data-loading', 'lazy');
 
