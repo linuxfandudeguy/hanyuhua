@@ -22,9 +22,14 @@ interface Lesson {
   title: string;
   titleChinese: string;
   level: string;
-  duration: string;
   description: string;
   content: LessonContent;
+}
+
+interface LessonIndexItem {
+  id: number;
+  title: string;
+  file: string;
 }
 
 interface LessonViewerProps {
@@ -43,18 +48,30 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
   const [exerciseScore, setExerciseScore] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  // Steps: 0 = Introduction, 1 = Vocabulary, 2 = Exercises, 3 = Completion
   const steps = ['Introduction', 'Vocabulary', 'Exercises', 'Completion'];
 
   useEffect(() => {
     const loadLesson = async () => {
+      setLoading(true);
       try {
-        const response = await fetch('/lessons/lessons.json');
-        const lessons = await response.json();
-        const foundLesson = lessons.find((l: Lesson) => l.id === lessonId);
-        setLesson(foundLesson);
+        // 1️⃣ Load index.json
+        const indexRes = await fetch('/lessons/index.json');
+        if (!indexRes.ok) throw new Error('Index file not found');
+        const indexData: LessonIndexItem[] = await indexRes.json();
+
+        // 2️⃣ Find lesson in index
+        const lessonMeta = indexData.find(l => l.id === lessonId);
+        if (!lessonMeta) throw new Error('Lesson not found in index');
+
+        // 3️⃣ Load the actual lesson file
+        const lessonRes = await fetch(lessonMeta.file);
+        if (!lessonRes.ok) throw new Error('Lesson file not found');
+        const lessonData: Lesson = await lessonRes.json();
+
+        setLesson(lessonData);
       } catch (error) {
         console.error('Failed to load lesson:', error);
+        setLesson(null);
       } finally {
         setLoading(false);
       }
@@ -64,10 +81,12 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
   }, [lessonId]);
 
   const handleNext = () => {
+    if (!lesson) return;
+
     if (currentStep === 0) {
       setCurrentStep(1);
     } else if (currentStep === 1) {
-      if (currentVocabIndex < lesson!.content.vocabulary.length - 1) {
+      if (currentVocabIndex < lesson.content.vocabulary.length - 1) {
         setCurrentVocabIndex(prev => prev + 1);
       } else {
         setCurrentStep(2);
@@ -76,7 +95,7 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
       if (!showExerciseResult) {
         handleExerciseSubmit();
       } else {
-        if (currentExerciseIndex < lesson!.content.exercises.length - 1) {
+        if (currentExerciseIndex < lesson.content.exercises.length - 1) {
           setCurrentExerciseIndex(prev => prev + 1);
           setSelectedAnswer(null);
           setShowExerciseResult(false);
@@ -91,6 +110,8 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
   };
 
   const handlePrevious = () => {
+    if (!lesson) return;
+
     if (currentStep === 1 && currentVocabIndex > 0) {
       setCurrentVocabIndex(prev => prev - 1);
     } else if (currentStep === 2 && currentExerciseIndex > 0) {
@@ -100,45 +121,30 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
     } else if (currentStep > 0) {
       setCurrentStep(prev => prev - 1);
       if (currentStep === 2) {
-        setCurrentVocabIndex(lesson!.content.vocabulary.length - 1);
+        setCurrentVocabIndex(lesson.content.vocabulary.length - 1);
       }
     }
   };
 
   const handleExerciseSubmit = () => {
-    if (selectedAnswer === null) return;
+    if (!lesson || selectedAnswer === null) return;
     
     setShowExerciseResult(true);
-    if (selectedAnswer === lesson!.content.exercises[currentExerciseIndex].correct) {
+    if (selectedAnswer === lesson.content.exercises[currentExerciseIndex].correct) {
       setExerciseScore(prev => prev + 1);
     }
   };
 
-  const playAudio = (audioPath: string) => {
-    // Audio playback would be implemented here
-    console.log('Playing audio:', audioPath);
-    const audio = new Audio(audioPath);
-    audio.play();
-  };
-
   const playCharacter = (text: string) => {
-  if ('speechSynthesis' in window) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    const voices = window.speechSynthesis.getVoices();
-    // Pick a Chinese voice if available
-    const chineseVoice = voices.find(v =>
-      v.lang.startsWith('zh') || v.lang.startsWith('cmn') || v.lang.startsWith('yue')
-    );
-    if (chineseVoice) {
-      utterance.voice = chineseVoice;
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voices = window.speechSynthesis.getVoices();
+      const chineseVoice = voices.find(v => v.lang.startsWith('zh'));
+      if (chineseVoice) utterance.voice = chineseVoice;
+      utterance.rate = 0.8;
+      window.speechSynthesis.speak(utterance);
     }
-    utterance.rate = 0.8; // slower for clarity
-    window.speechSynthesis.speak(utterance);
-  } else {
-    alert('Speech synthesis not supported in this browser.');
-  }
-};
-
+  };
 
   if (loading) {
     return (
@@ -156,10 +162,7 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-white rounded-xl p-8 text-center">
           <p className="text-red-600 mb-4">Lesson not found</p>
-          <button
-            onClick={onClose}
-            className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
-          >
+          <button onClick={onClose} className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
             Close
           </button>
         </div>
@@ -167,6 +170,7 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
     );
   }
 
+  // --- Render functions remain mostly the same ---
   const renderIntroduction = () => (
     <div className="text-center">
       <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -174,9 +178,7 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
       </div>
       <h2 className="text-2xl font-bold text-gray-900 mb-2">{lesson.title}</h2>
       <h3 className="text-xl text-red-600 font-medium mb-4">{lesson.titleChinese}</h3>
-      <p className="text-gray-600 mb-6 leading-relaxed max-w-2xl mx-auto">
-        {lesson.content.introduction}
-      </p>
+      <p className="text-gray-600 mb-6 leading-relaxed max-w-2xl mx-auto">{lesson.content.introduction}</p>
       <div className="bg-gray-50 rounded-lg p-4 mb-6">
         <div className="flex justify-center space-x-8 text-sm text-gray-600">
           <span>Level: {lesson.level}</span>
@@ -195,21 +197,17 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
             Vocabulary {currentVocabIndex + 1} of {lesson.content.vocabulary.length}
           </span>
         </div>
-        
         <div className="bg-gradient-to-br from-red-50 to-amber-50 rounded-2xl p-8 mb-6">
           <div className="text-6xl font-bold text-red-600 mb-4">{vocab.character}</div>
           <div className="text-2xl text-gray-700 mb-2">{vocab.pinyin}</div>
           <div className="text-xl text-gray-600 font-medium mb-4">{vocab.english}</div>
-        
-                        <button
-                           onClick={() => playCharacter(vocab.character)}
-                            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                                      >
-            <Play className="w-4 h-4 mr-2" />
-        Play Pinyin
+          <button
+            onClick={() => playCharacter(vocab.character)}
+            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <Play className="w-4 h-4 mr-2" /> Play Pinyin
           </button>
-
-          <div className="bg-white rounded-lg p-4">
+          <div className="bg-white rounded-lg p-4 mt-4">
             <p className="text-gray-800 mb-2">{vocab.example}</p>
             <p className="text-gray-500 text-sm">Example sentence</p>
           </div>
@@ -229,12 +227,8 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
             Exercise {currentExerciseIndex + 1} of {lesson.content.exercises.length}
           </span>
         </div>
-
         <div className="bg-white rounded-xl border-2 border-gray-200 p-6 mb-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">
-            {exercise.question}
-          </h3>
-
+          <h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">{exercise.question}</h3>
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             {exercise.options.map((option, index) => (
               <button
@@ -258,17 +252,12 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
                     {String.fromCharCode(65 + index)}
                   </span>
                   {option}
-                  {showExerciseResult && index === exercise.correct && (
-                    <CheckCircle className="w-5 h-5 text-green-600 ml-auto" />
-                  )}
-                  {showExerciseResult && selectedAnswer === index && index !== exercise.correct && (
-                    <X className="w-5 h-5 text-red-600 ml-auto" />
-                  )}
+                  {showExerciseResult && index === exercise.correct && <CheckCircle className="w-5 h-5 text-green-600 ml-auto" />}
+                  {showExerciseResult && selectedAnswer === index && index !== exercise.correct && <X className="w-5 h-5 text-red-600 ml-auto" />}
                 </div>
               </button>
             ))}
           </div>
-
           {showExerciseResult && (
             <div className={`p-4 rounded-lg ${isCorrect ? 'bg-green-50' : 'bg-red-50'}`}>
               <div className={`font-medium ${isCorrect ? 'text-green-800' : 'text-red-800'}`}>
@@ -301,9 +290,7 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
             <div className="text-gray-600">Correct Answers</div>
           </div>
           <div>
-            <div className="text-2xl font-bold text-blue-600">
-              {Math.round((exerciseScore / lesson.content.exercises.length) * 100)}%
-            </div>
+            <div className="text-2xl font-bold text-blue-600">{Math.round((exerciseScore / lesson.content.exercises.length) * 100)}%</div>
             <div className="text-gray-600">Accuracy</div>
           </div>
         </div>
@@ -330,13 +317,8 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
 
   const getNextButtonText = () => {
     if (currentStep === 0) return 'Start Learning';
-    if (currentStep === 1) {
-      return currentVocabIndex < lesson.content.vocabulary.length - 1 ? 'Next Word' : 'Start Exercises';
-    }
-    if (currentStep === 2) {
-      if (!showExerciseResult) return 'Submit Answer';
-      return currentExerciseIndex < lesson.content.exercises.length - 1 ? 'Next Exercise' : 'Complete Lesson';
-    }
+    if (currentStep === 1) return currentVocabIndex < lesson.content.vocabulary.length - 1 ? 'Next Word' : 'Start Exercises';
+    if (currentStep === 2) return !showExerciseResult ? 'Submit Answer' : currentExerciseIndex < lesson.content.exercises.length - 1 ? 'Next Exercise' : 'Complete Lesson';
     if (currentStep === 3) return 'Finish';
     return 'Next';
   };
@@ -347,25 +329,17 @@ export function LessonViewer({ lessonId, onClose, onComplete }: LessonViewerProp
         {/* Header */}
         <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-6">
           <div className="flex items-center justify-between mb-4">
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-            >
+            <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-lg transition-colors">
               <ArrowLeft className="w-5 h-5" />
             </button>
             <h1 className="text-xl font-bold">{lesson.title}</h1>
             <div className="w-9 h-9"></div>
           </div>
-          
+
           {/* Progress Bar */}
           <div className="flex items-center space-x-2 mb-2">
             {steps.map((step, index) => (
-              <div
-                key={index}
-                className={`flex-1 h-2 rounded-full ${
-                  index <= currentStep ? 'bg-white' : 'bg-white/30'
-                }`}
-              ></div>
+              <div key={index} className={`flex-1 h-2 rounded-full ${index <= currentStep ? 'bg-white' : 'bg-white/30'}`}></div>
             ))}
           </div>
           <div className="text-sm opacity-90">
