@@ -1,5 +1,13 @@
-const EU_COUNTRIES = [
-  'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE'
+const GDPR_COUNTRIES = [
+  // EU Member States
+  'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT',
+  'LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+
+  // EEA countries (non-EU)
+  'IS','LI','NO',
+
+  // Other territories applying GDPR rules
+  'GF','GP','MQ','RE','YT','PM','BL','MF','SX','AW','CW','GI'
 ];
 
 export async function handler(event, context) {
@@ -7,12 +15,12 @@ export async function handler(event, context) {
   const forwarded = event.headers['x-forwarded-for'];
   const ip = forwarded ? forwarded.split(',')[0] : event.headers['x-nf-client-connection-ip'] || '';
 
-  // 2️⃣ Get location info from ip-api.com
+  // 2️⃣ Get location info from ip-api.com via proxy
   let geoData: any = {};
   if (ip) {
     try {
       const apiRes = await fetch(
-        `http://ip-api.com/json/${ip}?fields=status,countryCode,country,regionName,city,timezone,query`
+        `https://uncors.vercel.app/?url=http://ip-api.com/json/${ip}?fields=status,countryCode,country,regionName,city,timezone,query`
       );
       geoData = await apiRes.json();
     } catch (err) {
@@ -21,8 +29,9 @@ export async function handler(event, context) {
   }
 
   // 3️⃣ Normalize for GDPR/CCPA checks
-  const gdpr = EU_COUNTRIES.includes((geoData.countryCode || '').toUpperCase());
-  const ccpa = (geoData.regionName || '').trim().toLowerCase() === 'california';
+  const gdpr = GDPR_COUNTRIES.includes((geoData.countryCode || '').toUpperCase());
+  const region = (geoData.regionName || '').trim();
+  const ccpa = region.toLowerCase() === 'california' || region.toUpperCase() === 'CA';
 
   return {
     statusCode: 200,
