@@ -1,0 +1,23 @@
+{
+  "id": 2,
+  "title": "Numbers 1-10",
+  "titleChinese": "数字一到十",
+  "level": "beginner",
+  "locked": false,
+  "description": "Master counting from 1 to 10 in Mandarin",
+  "topics": ["一", "二", "三", "四", "五"],
+  "content": {
+    "introduction": "Numbers are fundamental in any language. Let's learn to count from 1 to 10 in Chinese!",
+    "vocabulary": [
+      { "character": "一", "pinyin": "yī", "english": "one", "example": "我有一个苹果。" },
+      { "character": "二", "pinyin": "èr", "english": "two", "example": "二加二等于四。" },
+      { "character": "三", "pinyin": "sān", "english": "three", "example": "我们三个人一起去。" },
+      { "character": "四", "pinyin": "sì", "english": "four", "example": "四季如春。" },
+      { "character": "五", "pinyin": "wǔ", "english": "five", "example": "五点钟见面。" }
+    ],
+    "exercises": [
+      { "type": "character", "question": "Which character represents the number 'three'?", "options": ["一", "二", "三", "四"], "correct": 2 },
+      { "type": "translation", "question": "What does 五 mean?", "options": ["four", "five", "six", "seven"], "correct": 1 }
+    ]
+  }
+}
