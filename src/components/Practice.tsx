@@ -8,7 +8,7 @@ interface Question {
   options: string[];
   correct: number;
   explanation: string;
-  character?: string;
+  character: string;
 }
 
 const practiceQuestions: Question[] = [
