@@ -162,10 +162,6 @@ export function Lessons() {
                   {lesson.duration}
                 </div>
                 <div className="flex items-center">
-                  <Users className="w-4 h-4 mr-1" />
-                  {lesson.students.toLocaleString()}
-                </div>
-                <div className="flex items-center">
                   <Star className="w-4 h-4 mr-1 fill-current text-yellow-400" />
                   {lesson.rating}
                 </div>
