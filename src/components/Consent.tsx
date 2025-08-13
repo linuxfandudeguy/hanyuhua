@@ -15,28 +15,7 @@ const getCookie = (name: string) => {
 export const GDPRCCPAConsent: React.FC = () => {
   const [showBanner, setShowBanner] = useState(false);
 
-  useEffect(() => {
-    const consentGiven = getCookie('analytics_consent');
-
-    if (!consentGiven) {
-      fetch('/.netlify/functions/gdpr-ccpa')
-        .then(res => res.json())
-        .then(data => {
-          if (data.gdpr || data.ccpa) {
-            setShowBanner(true);
-          }
-        })
-        .catch(err => {
-          console.error('Error fetching GDPR/CCPA status:', err);
-        });
-    }
-  }, []);
-
-  const handleConsent = () => {
-    // Save consent for 1 year
-    setCookie('analytics_consent', 'true', 365);
-
-    // Insert Google Tag Manager script dynamically
+  const insertGTM = () => {
     const script = document.createElement('script');
     script.innerHTML = `
       (function(w,d,s,l){
@@ -50,7 +29,45 @@ export const GDPRCCPAConsent: React.FC = () => {
       })(window,document,'script','dataLayer');
     `;
     document.head.appendChild(script);
+  };
 
+  useEffect(() => {
+    const consentGiven = getCookie('analytics_consent');
+
+    if (consentGiven === 'true') {
+      insertGTM();
+      return;
+    } else if (consentGiven === 'false') {
+      return; // user previously denied, do nothing
+    }
+
+    fetch('/.netlify/functions/gdpr-ccpa')
+      .then(res => res.json())
+      .then(data => {
+        if (data.gdpr || data.ccpa) {
+          setShowBanner(true); // show banner to ask consent
+        } else {
+          // Not in regulated region: auto-consent
+          insertGTM();
+          setCookie('analytics_consent', 'true', 365);
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching GDPR/CCPA status:', err);
+        // On error, you could auto-consent
+        insertGTM();
+        setCookie('analytics_consent', 'true', 365);
+      });
+  }, []);
+
+  const handleConsent = () => {
+    setCookie('analytics_consent', 'true', 365);
+    insertGTM();
+    setShowBanner(false);
+  };
+
+  const handleDeny = () => {
+    setCookie('analytics_consent', 'false', 365);
     setShowBanner(false);
   };
 
@@ -62,14 +79,23 @@ export const GDPRCCPAConsent: React.FC = () => {
         If you see this message, you are likely in a region that the GDPR or CCPA laws apply to.
         By clicking "I consent", you agree to have your data tracked by Google LLC via Google Tag
         Manager/Google Analytics so we can improve our website. Your consent will be stored in a cookie named
-        <strong> analytics_consent</strong> that will last for <strong>one year</strong>.
+        <strong> analytics_consent</strong> that will last for <strong>one year</strong>.  
+        Clicking "Deny" will prevent tracking.
       </p>
-      <button
-        onClick={handleConsent}
-        className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
-      >
-        I Consent
-      </button>
+      <div className="flex gap-2">
+        <button
+          onClick={handleConsent}
+          className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+        >
+          I Consent
+        </button>
+        <button
+          onClick={handleDeny}
+          className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+        >
+          Deny
+        </button>
+      </div>
     </div>
   );
 };
