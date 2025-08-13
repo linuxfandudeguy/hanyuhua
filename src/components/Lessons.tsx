@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Lock, CircleCheck, Star, Clock } from 'lucide-react';
+import { Play, Lock, CheckCircle, Star, Clock } from 'lucide-react';
 import { LessonViewer } from './LessonViewer';
 
 interface LessonIndexItem {
@@ -142,7 +142,7 @@ export function Lessons() {
                   {lesson.level}
                 </span>
                 {lesson.completed ? (
-                  <CircleCheck className="w-5 h-5 text-green-500" />
+                  <CheckCircle className="w-5 h-5 text-green-500" />
                 ) : (
                   <Play className="w-5 h-5 text-red-600" />
                 )}
