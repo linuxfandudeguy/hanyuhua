@@ -35,7 +35,6 @@ const practiceQuestions: Question[] = [
     type: 'character',
     question: 'Which character means "friend"?',
     options: ['朋友', '老师', '学生', '家人'],
-    options: ['朋友', '老师', '学生', '家人'],
     correct: 0,
     explanation: '朋友 (péng yǒu) means friend. 老师 = teacher, 学生 = student, 家人 = family.',
     character: '?'
