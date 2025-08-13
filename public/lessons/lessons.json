@@ -61,6 +61,7 @@
   {
     "id": 2,
     "title": "Numbers 1-10",
+    "level": "beginner",
     "titleChinese": "数字一到十",
     "locked": false,
     "description": "Master counting from 1 to 10 in Mandarin",
@@ -162,7 +163,7 @@
         {
           "type": "pinyin",
           "question": "What is the pinyin for 哥哥?",
-          "options": ["bà ba", "mā ma", "gē ge", "jiě jie"],
+          "options": ["bà ba", "mā ma", "gē gē", "jiě jie"],
           "correct": 2
         }
       ]
