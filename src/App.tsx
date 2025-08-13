@@ -6,6 +6,8 @@ import { Vocabulary } from './components/Vocabulary';
 import { Practice } from './components/Practice';
 import { Progress } from './components/Progress';
 import { Footer } from './components/Footer';
+import { Consent } from './components/Consent'; 
+
 
 export type Section = 'home' | 'lessons' | 'vocabulary' | 'practice' | 'progress';
 
@@ -34,6 +36,7 @@ function App() {
       <Header currentSection={currentSection} onSectionChange={setCurrentSection} />
       <main className="pt-16">
         {renderSection()}
+        <Consent />
       </main>
       <Footer />
     </div>
