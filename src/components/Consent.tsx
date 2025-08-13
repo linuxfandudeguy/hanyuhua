@@ -33,41 +33,52 @@ export const GDPRCCPAConsent: React.FC = () => {
 
   useEffect(() => {
     const consentGiven = getCookie('analytics_consent');
+    const localConsent = localStorage.getItem('analytics_consent_no_cookie');
+    const localDeny = localStorage.getItem('analytics_deny_no_cookie');
 
-    if (consentGiven === 'true') {
+    if (consentGiven === 'true' || localConsent === 'true') {
       insertGTM();
       return;
-    } else if (consentGiven === 'false') {
-      return; // user previously denied, do nothing
+    } else if (consentGiven === 'false' || localDeny === 'true') {
+      return; // tracking denied
     }
 
     fetch('/.netlify/functions/gdpr-ccpa')
       .then(res => res.json())
       .then(data => {
         if (data.gdpr || data.ccpa) {
-          setShowBanner(true); // show banner to ask consent
+          setShowBanner(true);
         } else {
-          // Not in regulated region: auto-consent
           insertGTM();
           setCookie('analytics_consent', 'true', 365);
         }
       })
       .catch(err => {
         console.error('Error fetching GDPR/CCPA status:', err);
-        // On error, you could auto-consent
         insertGTM();
         setCookie('analytics_consent', 'true', 365);
       });
   }, []);
 
-  const handleConsent = () => {
+  const handleConsentCookie = () => {
     setCookie('analytics_consent', 'true', 365);
     insertGTM();
     setShowBanner(false);
   };
 
-  const handleDeny = () => {
+  const handleConsentNoCookie = () => {
+    localStorage.setItem('analytics_consent_no_cookie', 'true');
+    insertGTM();
+    setShowBanner(false);
+  };
+
+  const handleDenyCookie = () => {
     setCookie('analytics_consent', 'false', 365);
+    setShowBanner(false);
+  };
+
+  const handleDenyNoCookie = () => {
+    localStorage.setItem('analytics_deny_no_cookie', 'true');
     setShowBanner(false);
   };
 
@@ -76,24 +87,32 @@ export const GDPRCCPAConsent: React.FC = () => {
   return (
     <div className="fixed bottom-0 left-0 w-full bg-yellow-100 border-t border-yellow-300 p-4 z-50 shadow-md">
       <p className="mb-2 text-sm text-gray-800">
-        If you see this message, you are likely in a region that the GDPR or CCPA laws apply to.
-        By clicking "I consent", you agree to have your data tracked by Google LLC via Google Tag
-        Manager/Google Analytics so we can improve our website. Your consent will be stored in a cookie named
-        <strong> analytics_consent</strong> that will last for <strong>one year</strong>.  
-        Clicking "Deny" will prevent tracking.
+        This website uses analytics from Google LLC. You can choose to consent or deny tracking, either with cookies (persistent) or without cookies (local storage only).
       </p>
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         <button
-          onClick={handleConsent}
+          onClick={handleConsentCookie}
           className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
         >
-          I Consent
+          I Consent (with cookies)
         </button>
         <button
-          onClick={handleDeny}
+          onClick={handleConsentNoCookie}
+          className="px-4 py-2 bg-yellow-300 text-gray-800 rounded hover:bg-yellow-400"
+        >
+          I Consent (without cookies)
+        </button>
+        <button
+          onClick={handleDenyCookie}
           className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
         >
-          Deny
+          Deny (with cookies)
+        </button>
+        <button
+          onClick={handleDenyNoCookie}
+          className="px-4 py-2 bg-gray-400 text-gray-800 rounded hover:bg-gray-500"
+        >
+          Deny (without cookies)
         </button>
       </div>
     </div>
