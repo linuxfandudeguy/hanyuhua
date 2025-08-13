@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-// Simple cookie helpers
+// Cookie helpers
 const setCookie = (name: string, value: string, days: number) => {
   const expires = new Date();
   expires.setDate(expires.getDate() + days);
@@ -33,23 +33,23 @@ export const GDPRCCPAConsent: React.FC = () => {
   }, []);
 
   const handleConsent = () => {
-    // Save consent in cookie for 1 year
+    // Save consent for 1 year
     setCookie('analytics_consent', 'true', 365);
 
-    // Insert Google Analytics script
+    // Insert Google Tag Manager script dynamically
     const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=GTM-TDK5C556';
+    script.innerHTML = `
+      (function(w,d,s,l){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id=GTM-TDK5C556'+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer');
+    `;
     document.head.appendChild(script);
-
-    script.onload = () => {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      function gtag(...args: any[]) {
-        (window as any).dataLayer.push(args);
-      }
-      gtag('js', new Date());
-      gtag('config', 'GTM-TDK5C556');
-    };
 
     setShowBanner(false);
   };
@@ -60,8 +60,8 @@ export const GDPRCCPAConsent: React.FC = () => {
     <div className="fixed bottom-0 left-0 w-full bg-yellow-100 border-t border-yellow-300 p-4 z-50 shadow-md">
       <p className="mb-2 text-sm text-gray-800">
         If you see this message, you are likely in a region that the GDPR or CCPA laws apply to.
-        By clicking "I consent", you agree to have your data tracked by Google LLC through Google
-        Analytics so we can improve our website. Your consent will be stored in a cookie named
+        By clicking "I consent", you agree to have your data tracked by Google LLC via Google Tag
+        Manager/Google Analytics so we can improve our website. Your consent will be stored in a cookie named
         <strong> analytics_consent</strong> that will last for <strong>one year</strong>.
       </p>
       <button
