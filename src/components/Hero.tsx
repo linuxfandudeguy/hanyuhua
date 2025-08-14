@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, Star, Users, BookOpen, Target } from 'lucide-react';
 
 interface HeroProps {
@@ -6,6 +6,23 @@ interface HeroProps {
 }
 
 export function Hero({ onGetStarted }: HeroProps) {
+  const [dailyCharacter, setDailyCharacter] = useState('汉'); // default/fallback
+
+  useEffect(() => {
+    async function fetchDailyCharacter() {
+      try {
+        const res = await fetch('/.netlify/functions/han');
+        const data = await res.json();
+        if (data.character) {
+          setDailyCharacter(data.character);
+        }
+      } catch (err) {
+        console.error('Failed to fetch daily character:', err);
+      }
+    }
+    fetchDailyCharacter();
+  }, []);
+
   return (
     <div className="relative overflow-hidden">
       {/* Background Pattern */}
@@ -52,13 +69,9 @@ export function Hero({ onGetStarted }: HeroProps) {
           <div className="relative">
             <div className="relative bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="absolute inset-0 bg-gradient-to-br from-red-100 to-amber-100 rounded-2xl"></div>
-              <div className="relative">
+              <div className="relative text-center">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">Today's Character</h3>
-                <div className="text-center">
-                  <div className="text-8xl font-bold text-red-600 mb-2">学</div>
-                  <div className="text-lg font-medium text-gray-700 mb-1">xué</div>
-                  <div className="text-gray-600">to learn, study</div>
-                </div>
+                <div className="text-8xl font-bold text-red-600">{dailyCharacter}</div>
               </div>
             </div>
           </div>
@@ -92,5 +105,3 @@ export function Hero({ onGetStarted }: HeroProps) {
         </div>
       </div>
     </div>
-  );
-}
