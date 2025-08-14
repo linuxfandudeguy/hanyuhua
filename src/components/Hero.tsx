@@ -6,7 +6,7 @@ interface HeroProps {
 }
 
 export function Hero({ onGetStarted }: HeroProps) {
-  const [dailyCharacter, setDailyCharacter] = useState('汉'); // default/fallback
+  const [dailyCharacter, setDailyCharacter] = useState('鵚'); // default/fallback
 
   useEffect(() => {
     async function fetchDailyCharacter() {
@@ -105,3 +105,5 @@ export function Hero({ onGetStarted }: HeroProps) {
         </div>
       </div>
     </div>
+  );
+}
