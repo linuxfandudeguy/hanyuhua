@@ -1,14 +1,14 @@
 {
   "id": 5,
-  "title": "Food",
-  "titleChinese": "食物",
-  "level": "intermediate",
+  "title": "Food Basics",
+  "titleChinese": "食物基础",
+  "level": "beginner",
   "completed": false,
   "locked": false,
-  "description": "Learn to talk about different foods, meals, and how to express your food preferences in Chinese.",
+  "description": "Learn basic food vocabulary, drinks, and simple expressions for ordering or talking about food.",
   "topics": ["水果", "蔬菜", "肉类", "饮料", "点餐", "口味"],
   "content": {
-    "introduction": "Learn vocabulary for common foods, drinks, and phrases for discussing meals, ordering at a restaurant, and expressing likes and dislikes in Chinese.",
+    "introduction": "In this lesson, you'll learn common foods, drinks, and basic phrases to talk about meals, what you like to eat, and how to order in Chinese.",
     "vocabulary": [
       { "character": "苹果", "pinyin": "píng guǒ", "english": "apple", "example": "我每天吃一个苹果。" },
       { "character": "香蕉", "pinyin": "xiāng jiāo", "english": "banana", "example": "她喜欢吃香蕉。" },
@@ -23,34 +23,33 @@
       { "character": "我喜欢吃…", "pinyin": "wǒ xǐ huān chī…", "english": "I like to eat…", "example": "我喜欢吃苹果和香蕉。" },
       { "character": "我不喜欢吃…", "pinyin": "wǒ bù xǐ huān chī…", "english": "I don’t like to eat…", "example": "我不喜欢吃鱼。" },
       { "character": "请给我…", "pinyin": "qǐng gěi wǒ…", "english": "Please give me…", "example": "请给我一碗面条。" },
-      { "character": "多少钱？", "pinyin": "duō shǎo qián?", "english": "How much is it?", "example": "这碗牛肉面多少钱？" }
+      { "character": "多少钱？", "pinyin": "duō shǎo qián?", "english": "How much is it?", "example": "这碗牛肉面多少钱？" },
+      { "character": "好吃", "pinyin": "hǎo chī", "english": "delicious", "example": "这个苹果很好吃。" },
+      { "character": "早餐", "pinyin": "zǎo cān", "english": "breakfast", "example": "我每天吃早餐。" },
+      { "character": "午餐", "pinyin": "wǔ cān", "english": "lunch", "example": "我们一起吃午餐吧。" },
+      { "character": "晚餐", "pinyin": "wǎn cān", "english": "dinner", "example": "晚餐我们吃鱼和米饭。" }
     ],
     "exercises": [
-      {
-        "type": "translation",
-        "question": "píng guǒ",
-        "answer": "苹果 / apple"
-      },
-      {
-        "type": "translation",
-        "question": "miàn tiáo",
-        "answer": "面条 / noodles"
-      },
-      {
-        "type": "translation",
-        "question": "wǒ xǐ huān chī…",
-        "answer": "我喜欢吃… / I like to eat…"
-      },
-      {
-        "type": "translation",
-        "question": "qǐng gěi wǒ…",
-        "answer": "请给我… / Please give me…"
-      },
-      {
-        "type": "translation",
-        "question": "duō shǎo qián?",
-        "answer": "多少钱？ / How much is it?"
-      }
+      { "type": "translation", "question": "How do you say 'apple' in Chinese?", "options": ["苹果", "米饭", "香蕉", "鸡肉"], "correct": 0 },
+      { "type": "translation", "question": "How do you say 'banana' in Chinese?", "options": ["苹果", "面条", "香蕉", "鱼"], "correct": 2 },
+      { "type": "translation", "question": "How do you say 'rice' in Chinese?", "options": ["面条", "米饭", "牛奶", "牛肉"], "correct": 1 },
+      { "type": "translation", "question": "How do you say 'noodles' in Chinese?", "options": ["面条", "米饭", "苹果", "鸡肉"], "correct": 0 },
+      { "type": "translation", "question": "How do you say 'chicken' in Chinese?", "options": ["牛肉", "鱼", "鸡肉", "面条"], "correct": 2 },
+      { "type": "translation", "question": "How do you say 'beef' in Chinese?", "options": ["牛奶", "牛肉", "鸡肉", "水"], "correct": 1 },
+      { "type": "translation", "question": "How do you say 'fish' in Chinese?", "options": ["鱼", "牛奶", "米饭", "面条"], "correct": 0 },
+      { "type": "translation", "question": "How do you say 'milk' in Chinese?", "options": ["牛奶", "果汁", "水", "鸡肉"], "correct": 0 },
+      { "type": "translation", "question": "How do you say 'fruit juice' in Chinese?", "options": ["水", "果汁", "牛奶", "面条"], "correct": 1 },
+      { "type": "translation", "question": "How do you say 'water' in Chinese?", "options": ["水", "牛奶", "苹果", "香蕉"], "correct": 0 },
+      { "type": "translation", "question": "How do you say 'I like to eat…' in Chinese?", "options": ["我不喜欢吃…", "请给我…", "我喜欢吃…", "好吃"], "correct": 2 },
+      { "type": "translation", "question": "How do you say 'I don’t like to eat…' in Chinese?", "options": ["我喜欢吃…", "我不喜欢吃…", "请给我…", "多少钱？"], "correct": 1 },
+      { "type": "translation", "question": "How do you say 'Please give me…' in Chinese?", "options": ["我喜欢吃…", "请给我…", "多少钱？", "好吃"], "correct": 1 },
+      { "type": "translation", "question": "How do you say 'How much is it?' in Chinese?", "options": ["多少钱？", "请给我…", "好吃", "我喜欢吃…"], "correct": 0 },
+      { "type": "translation", "question": "How do you say 'delicious' in Chinese?", "options": ["好吃", "晚餐", "米饭", "鸡肉"], "correct": 0 },
+      { "type": "translation", "question": "How do you say 'breakfast' in Chinese?", "options": ["早餐", "午餐", "晚餐", "牛奶"], "correct": 0 },
+      { "type": "translation", "question": "How do you say 'lunch' in Chinese?", "options": ["早餐", "午餐", "晚餐", "果汁"], "correct": 1 },
+      { "type": "translation", "question": "How do you say 'dinner' in Chinese?", "options": ["早餐", "午餐", "晚餐", "好吃"], "correct": 2 },
+      { "type": "translation", "question": "Fill in the blank: '___每天吃一个苹果。' (I eat an apple every day.)", "options": ["她", "我", "他", "我们"], "correct": 1 },
+      { "type": "translation", "question": "Fill in the blank: '请给我一碗___。' (Please give me a bowl of …)", "options": ["米饭", "苹果", "牛奶", "香蕉"], "correct": 0 }
     ]
   }
 }
