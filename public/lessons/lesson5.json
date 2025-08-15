@@ -1,0 +1,56 @@
+{
+  "id": 5,
+  "title": "Food",
+  "titleChinese": "食物",
+  "level": "intermediate",
+  "completed": false,
+  "locked": false,
+  "description": "Learn to talk about different foods, meals, and how to express your food preferences in Chinese.",
+  "topics": ["水果", "蔬菜", "肉类", "饮料", "点餐", "口味"],
+  "content": {
+    "introduction": "Learn vocabulary for common foods, drinks, and phrases for discussing meals, ordering at a restaurant, and expressing likes and dislikes in Chinese.",
+    "vocabulary": [
+      { "character": "苹果", "pinyin": "píng guǒ", "english": "apple", "example": "我每天吃一个苹果。" },
+      { "character": "香蕉", "pinyin": "xiāng jiāo", "english": "banana", "example": "她喜欢吃香蕉。" },
+      { "character": "米饭", "pinyin": "mǐ fàn", "english": "rice", "example": "我喜欢吃米饭。" },
+      { "character": "面条", "pinyin": "miàn tiáo", "english": "noodles", "example": "他每天吃面条。" },
+      { "character": "鸡肉", "pinyin": "jī ròu", "english": "chicken", "example": "他不吃鸡肉。" },
+      { "character": "牛肉", "pinyin": "niú ròu", "english": "beef", "example": "我喜欢吃牛肉。" },
+      { "character": "鱼", "pinyin": "yú", "english": "fish", "example": "我们晚餐吃鱼。" },
+      { "character": "牛奶", "pinyin": "niú nǎi", "english": "milk", "example": "早上我喝牛奶。" },
+      { "character": "果汁", "pinyin": "guǒ zhī", "english": "fruit juice", "example": "我喜欢喝橙汁。" },
+      { "character": "水", "pinyin": "shuǐ", "english": "water", "example": "请给我一杯水。" },
+      { "character": "我喜欢吃…", "pinyin": "wǒ xǐ huān chī…", "english": "I like to eat…", "example": "我喜欢吃苹果和香蕉。" },
+      { "character": "我不喜欢吃…", "pinyin": "wǒ bù xǐ huān chī…", "english": "I don’t like to eat…", "example": "我不喜欢吃鱼。" },
+      { "character": "请给我…", "pinyin": "qǐng gěi wǒ…", "english": "Please give me…", "example": "请给我一碗面条。" },
+      { "character": "多少钱？", "pinyin": "duō shǎo qián?", "english": "How much is it?", "example": "这碗牛肉面多少钱？" }
+    ],
+    "exercises": [
+      {
+        "type": "translation",
+        "question": "píng guǒ",
+        "answer": "苹果 / apple"
+      },
+      {
+        "type": "translation",
+        "question": "miàn tiáo",
+        "answer": "面条 / noodles"
+      },
+      {
+        "type": "translation",
+        "question": "wǒ xǐ huān chī…",
+        "answer": "我喜欢吃… / I like to eat…"
+      },
+      {
+        "type": "translation",
+        "question": "qǐng gěi wǒ…",
+        "answer": "请给我… / Please give me…"
+      },
+      {
+        "type": "translation",
+        "question": "duō shǎo qián?",
+        "answer": "多少钱？ / How much is it?"
+      }
+    ]
+  }
+}
