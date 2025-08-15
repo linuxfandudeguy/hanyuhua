@@ -87,8 +87,15 @@ export const GDPRCCPAConsent: React.FC = () => {
   return (
     <div className="fixed bottom-0 left-0 w-full bg-yellow-100 border-t border-yellow-300 p-4 z-50 shadow-md">
       <p className="mb-2 text-sm text-gray-800">
-        This website uses analytics from Google LLC/Cloudflare, Inc. We use the data from these services to make our site better. You can choose to consent or deny tracking, either with cookies (persistent) or without cookies (local storage only).
-      </p>
+          This website uses Google Analytics (Google LLC) to help improve our services.
+  We also run on a subdomain of <a href="https://yeet.su/" className="underline">yeet.su</a>,
+  whose domain owner automatically enables Cloudflare (Cloudflare, Inc.) for
+  content delivery, security, and performance. Cloudflare may collect and
+  process limited technical data (such as your IP address, browser type, and
+  pages visited) automatically when you access the site. This Cloudflare
+  processing is essential to deliver the website and cannot be disabled from
+  within our site. You can choose whether to allow or block Google Analytics
+  tracking below.
       <div className="flex flex-wrap gap-2">
         <button
           onClick={handleConsentCookie}
