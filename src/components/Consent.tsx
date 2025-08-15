@@ -87,7 +87,7 @@ export const GDPRCCPAConsent: React.FC = () => {
   return (
     <div className="fixed bottom-0 left-0 w-full bg-yellow-100 border-t border-yellow-300 p-4 z-50 shadow-md">
       <p className="mb-2 text-sm text-gray-800">
-        This website uses analytics from Google LLC. You can choose to consent or deny tracking, either with cookies (persistent) or without cookies (local storage only).
+        This website uses analytics from Google LLC/Cloudflare, Inc. We use the data from these services to make our site better. You can choose to consent or deny tracking, either with cookies (persistent) or without cookies (local storage only).
       </p>
       <div className="flex flex-wrap gap-2">
         <button
