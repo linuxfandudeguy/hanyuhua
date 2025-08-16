@@ -3,15 +3,8 @@ export async function handler(event, context) {
   const END = 0x9FFF;
   const TOTAL = END - START + 1;
 
-  // Get days since epoch in UTC
-  const now = new Date();
-  const daysSinceEpochUTC = Math.floor(Date.UTC(
-    now.getUTCFullYear(),
-    now.getUTCMonth(),
-    now.getUTCDate()
-  ) / (1000 * 60 * 60 * 24));
-
-  const index = daysSinceEpochUTC % TOTAL;
+  // Generate a random index each time
+  const index = Math.floor(Math.random() * TOTAL);
   const character = String.fromCharCode(START + index);
 
   return {
