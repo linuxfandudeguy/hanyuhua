@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Volume2, Bookmark, RotateCcw, CheckCircle, X } from 'lucide-react';
+import {  RotateCcw, CheckCircle, X } from 'lucide-react';
 
 interface VocabularyCard {
   id: number;
@@ -194,12 +194,7 @@ export function Vocabulary() {
               Level {currentVocab.difficulty}
             </span>
             <div className="flex items-center space-x-2">
-              <button className="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors">
-                <Bookmark className="w-5 h-5" />
-              </button>
-              <button className="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors">
-                <Volume2 className="w-5 h-5" />
-              </button>
+            
             </div>
           </div>
 
