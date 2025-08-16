@@ -92,7 +92,7 @@ export function Hero({ onGetStarted }: HeroProps) {
               <span className="text-xl font-bold text-amber-600">汉</span>
             </div>
             <h3 className="font-semibold text-gray-800 mb-2">Character Practice</h3>
-            <p className="text-gray-600">Master stroke order and character recognition with guided practice</p>
+            <p className="text-gray-600">Master character recognition with guided practice</p>
           </div>
           
           <div className="text-center p-6 bg-white/50 rounded-xl backdrop-blur-sm">
