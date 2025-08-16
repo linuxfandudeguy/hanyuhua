@@ -27,7 +27,7 @@ export function Footer() {
             </p>
 
             <div className="flex space-x-4">
-              <a href="https://github.com/linuxfandudeguy/learn-chinese" className="text-gray-400 hover:text-red-400 transition-colors">
+              <a href="https://github.com/linuxfandudeguy/hanyuhua" className="text-gray-400 hover:text-red-400 transition-colors">
                 <Github className="w-5 h-5" />
               </a>
               <a href="mailto:koshlandjg105@gmail.com" className="text-gray-400 hover:text-red-400 transition-colors">
@@ -40,7 +40,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Support</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="https://github.com/linuxfandudeguy/learn-chinese/issues/new" className="hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="https://github.com/linuxfandudeguy/hanyuhua/issues/new" className="hover:text-white transition-colors">Contact Us</a></li>
             </ul>
           </div>
         </div>
