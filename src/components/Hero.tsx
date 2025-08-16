@@ -70,7 +70,7 @@ export function Hero({ onGetStarted }: HeroProps) {
             <div className="relative bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="absolute inset-0 bg-gradient-to-br from-red-100 to-amber-100 rounded-2xl"></div>
               <div className="relative text-center">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Today's Character</h3>
+                <h3 className="text-xl font-bold text-gray-800 mb-4">A Random Han</h3>
                 <div className="text-8xl font-bold text-red-600">{dailyCharacter}</div>
               </div>
             </div>
