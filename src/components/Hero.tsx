@@ -11,7 +11,7 @@ export function Hero({ onGetStarted }: HeroProps) {
   useEffect(() => {
     async function fetchDailyCharacter() {
       try {
-        const res = await fetch('/.netlify/functions/han');
+        const res = await fetch('/.netlify/functions/han'); // get the char
         const data = await res.json();
         if (data.character) {
           setDailyCharacter(data.character);
