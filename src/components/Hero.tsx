@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Star, Users, BookOpen, Target } from 'lucide-react';
-
+// imports
 interface HeroProps {
   onGetStarted: () => void;
 }
